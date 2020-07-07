@@ -1,0 +1,110 @@
+{% extends 'base.html' %} {% comment %} Extending the base template to reuse the code in every html file of home app.
+{% endcomment %}
+
+{% comment %} Filling the empty block title of base.html with respective page titles. {% endcomment %}
+{% block title %} BlogPost {% endblock title %}
+
+{% comment %} Need to load humanize to know the time when user has posted a comment {% endcomment %}
+{% load humanize %}
+{% load extras %}
+
+{% block body %}
+<div class="container mt-2">
+  <h2 class="blog-post-title">{{post.title}}</h2>
+  <p class="blog-post-meta">{{post.timeStamp}} by <a href="#">{{post.author}}</a></p>
+
+  <p>{{post.content}}</p>
+  <hr>
+</div>
+
+<div class="container">
+  <h2>Comments ({{comments.count}}) </h2>
+  {% comment %} If the user has logged in, then user is allowed to post a comment {% endcomment %}
+  {% if user.is_authenticated %}
+  <form action="/blog/postComment" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleInputEmail1">Post Comment</label>
+      <input type="text" class="form-control" name="comment" placeholder="Enter comment here">
+    </div>
+    <input type="hidden" name="postSno" value={{post.sno}}>
+    <input type="hidden" name="parentSno" value="">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  {% comment %} If the user has not logged in, usser has to first login to post a comment {% endcomment %}
+  {% else %}
+  <h5>Please login to post a comment..!!</h5>
+  {% endif %}
+
+  {% comment %} To fetch comments from database and display in the post of blog where user has commented.
+  {% endcomment %}
+  {% for comment in comments %}
+  <div class="row my-3">  
+    <div class="col-md-1 ">
+      {% comment %} To need to configer static in 'settings.py' of iCoder project. {% endcomment %}
+      {% comment %} 'w-100' class in img is to adjust the size of image and 'p-2' is to give padding to an image.
+      {% endcomment %}
+      <img src="/static/img/user.png" class="rounded mx-auto d-block w-100 pt-3" alt="user" class="src">
+    </div>
+    {% comment %} 'naturaltime' filter is used to see the time that how long back the user has posted comment
+    {% endcomment %}
+    <div class="col-md-10 ">
+      <b>{{comment.user.username}}</b>
+      <span class="badge badge-pill badge-dark">{{comment.timestamp | naturaltime}}</span>
+      <br>
+      <div> {{comment.comment}} </div>
+
+      {% comment %} Reply Code {% endcomment %}
+        <div class="reply mx-0">
+          {% if user.is_authenticated %}
+          <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse"
+            data-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}">
+            Reply
+          </button>
+
+          <div class="collapse" id="replyBox{{comment.sno}}">
+            <div class="card card-body my-2">
+              <form action="/blog/postComment" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="comment">Post a Reply</label>
+                  <input type="text" class="form-control" name="comment" placeholder="Enter comment here">
+                  <input type="hidden" name="parentSno" value="{{comment.sno}}">
+                </div>
+                <input type="hidden" name="postSno" value={{post.sno}}>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+         {% else %}
+          <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse"
+            data-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}"
+            disabled>
+            Login to Reply
+          </button>
+          {% endif %}
+          <div class="replies my-2">
+            {% comment %} Here we gonna show replies of their corresponding parent comment. {% endcomment %}
+            {% comment %} create a template filter 'get_val',and 'get_val' will get replyDict and can perform on it
+            {% endcomment %}
+            {% for reply in replyDict|get_val:comment.sno %}
+
+              <div class="row my-2">
+                <div class="col-md-1">
+                  <img src="/static/img/user.png" class="rounded mx-auto d-block w-75 my-2" alt="user" class="src">
+                </div>
+                <div class="col-md-11 my-2">
+                  {% comment %} {{reply.comment}} {% endcomment %}
+                  <b>{{reply.user.username}}</b> <span class="badge badge-pill badge-dark">{{reply.timestamp | naturaltime}}</span>
+                  <div> {{reply.comment}} </div>
+                </div>
+                <br>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+     </div>
+    {% endfor %}
+</div>
+{% endblock body %}

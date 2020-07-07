@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% comment %} Extending the base template to reuse the code in every html file of home app.  {% endcomment %}
+
+{% comment %} Filling the empty block title of base.html with respective page titles. {% endcomment %}
+{% block title %} Home {% endblock title %}
+
+{% block homeactive %} active {% endblock homeactive %}
+
+{% block body %} 
+  <div class="container my-3">
+     <div class="jumbotron">
+     <div class="text-center">
+        <h1 class="display-4 "><b>Welcome to iCoder</b></h1>
+        <p class="lead"><b>Creating value through true convergence and For the next generation of big businesses.</b></p>
+        <hr class="my-4">
+            <h5><b>In a World of Technology, People Make the Difference...</b></h5>
+            <a href="/blog" class="btn btn-danger btn-lg my-2  mr-2">Browse Blog</a>
+            <a href="/about" class="btn btn-success btn-lg my-2 mr-2">About Us</a>
+            <a href="/contact" class="btn btn-primary btn-lg my-2 mr-2">Contact Us</a>
+  
+       </div>
+     </div>
+  </div>
+
+  {% comment %} <div class="container">
+   <h2>Popular Posts</h2>
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row my-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">World</strong>
+          <h3 class="mb-0">Featured post</h3>
+          <div class="mb-1 text-muted">Nov 12</div>
+          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          
+        </div>
+      </div>
+  </div> {% endcomment %}
+
+  <div class="container">
+    <h2 class="text-center my-4">The Right Place For You To Get Started..  </h2>
+    {% comment %} First Row {% endcomment %}
+    <div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm" style="height: 410px;">
+          <img src="/static/img/about.jpg" width="140" height="200" class="card-img-top" alt="...">
+          <div class="card-body">
+          <h5 class="card-title">Grow with Coding</h5>
+            <p class="card-text">Learn some programming lanaguages which could improve your skills and practical knowledge.</p>
+            <a href="/about" class="btn btn-primary d-block">About</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm" style="height: 410px;">
+          <img src="/static/img/blog.jpg" width="140" height="200" class="card-img-top" alt="...">
+          <div class="card-body">
+          <h5 class="card-title">Coding Articles</h5>
+            <p class="card-text">Latest coding information compiled as coding articles.Improve your programming with our coding articles..</p>
+            <a href="/blog" class="btn btn-primary d-block">Go To Blog</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm" style="height: 410px;">
+          <img src="/static/img/contact.jpg" width="140" height="200" class="card-img-top" alt="...">
+          <div class="card-body">
+          <h5 class="card-title">Contact Us</h5>
+            <p class="card-text">Learn programming from our articles.You can contact me for any doubt and I will get back to you!</p>
+            <a href="/contact" class="btn btn-primary d-block">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body %}

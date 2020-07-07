@@ -1,0 +1,102 @@
+{% extends 'base.html' %} {% comment %} Extending the base template to reuse the code in every html file of home app.
+{% endcomment %}
+
+{% comment %} Filling the empty block title of base.html with respective page titles. {% endcomment %}
+{% block title %} About {% endblock title %}
+
+{% block aboutactive %} about {% endblock aboutactive %}
+
+{% block body %}
+<div class="container my-3">
+  <div class="jumbotron">
+    <h1 class="display-4 text-center"><b>About</b></h1>
+    <p>
+      <b>ICoder</b> is a website dedicated to those who create and maintain websites: <b>web developers, web designers,
+      webmasters, and so on.</b>Our aim is to make web development easier and more fun by providing high-quality resources
+      and useful tutorials to
+      our readers. The website has been founded in June 2008. The name <b>“iCoder”</b> came from the founder’s immoderate
+      love for these sweet, friendly.</p>
+    <p>
+      iCoder provides free guides, tutorials, and articles about web development, WordPress and web design. All
+      content on the site is free of charge for our readers.In addition to articles, we also provide exclusive deals,
+      coupons and discounts on <b>hosting, WordPress Themes</b> and
+      everything else that can be useful to <b>bloggers, web developers and designers.</b>
+    </p>
+
+  </div>
+</div>
+
+<div class="container">
+  <h2 class="text-center my-4">The Programming Languages You Want To Grow In..!! </h2>
+  {% comment %} First Row {% endcomment %}
+  <div class="row">
+   <div class="col-md-4">
+      <div class="card mb-4 shadow-sm" style="height: 410px;">
+        <img src="/static/img/python1.jpg" width="140" height="200" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Python Programming Language</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="blog/python-post" class="btn btn-primary">Learn Python</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card card mb-4 shadow-sm" style="height: 400px;">
+        <img src="/static/img/django1.jpg" width="140" height="200" class="card-img-top d-block w-40" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Django Framework</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="/blog/django-post" class="btn btn-primary">Learn Django</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm" style="height: 400px;">
+        <img src="/static/img/wordpress.jpg" width="140" height="200" class="card-img-top d-block w-100" alt="...">
+        <div class="card-body mb-3">
+          <h5 class="card-title">WordPress Framework CMS</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="/blog/wordpress-post" class="btn btn-primary">Learn WordPress</a>
+        </div>
+      </div>
+    </div>
+  </div>
+   {% comment %} Second Row {% endcomment %}
+  <div class="row">
+   <div class="col-md-4">
+      <div class="card mb-4 shadow-sm" style="height: 410px;">
+        <img src="/static/img/php.jpg" width="140" height="200" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Php Programming Language</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="/blog/php-post" class="btn btn-primary">Learn Php</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card card mb-4 shadow-sm" style="height: 400px;">
+        <img src="/static/img/android.jpg" width="140" height="200" class="card-img-top d-block w-40" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Android Programming Language</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="/blog/android-post" class="btn btn-primary">Learn Android</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm" style="height: 400px;">
+        <img src="/static/img/c++.jpg" width="140" height="200" class="card-img-top d-block w-100" alt="...">
+        <div class="card-body mb-3">
+          <h5 class="card-title">C++ Programming Language</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="/blog/c++ -post" class="btn btn-primary">Learn C++</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
